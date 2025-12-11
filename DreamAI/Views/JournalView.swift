@@ -62,7 +62,9 @@ struct JournalView: View {
                                     .font(.headline)
                                     .foregroundColor(.white)
                                 Spacer()
-                                Button("View Calendar") { }
+                                Button("View Calendar") {
+                                    HapticsManager.shared.playLight()
+                                }
                                     .font(.caption)
                                     .fontWeight(.bold)
                                     .foregroundColor(Color.theme.primary)
@@ -134,7 +136,9 @@ struct JournalView: View {
                 // Floating Action Button
                 VStack {
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        HapticsManager.shared.playMedium()
+                    }) {
                         HStack {
                             Image(systemName: "square.and.pencil")
                             Text("Log Tonight's Dream")

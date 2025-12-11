@@ -39,6 +39,7 @@ struct HomeView: View {
     private var headerView: some View {
         HStack {
             Button(action: {
+                HapticsManager.shared.playLight()
                 // Toggle Dark Mode (Mock)
             }) {
                 Circle()
@@ -62,6 +63,7 @@ struct HomeView: View {
 
             // Link to Explorer via Search/Profile or just button
             Button(action: {
+                HapticsManager.shared.playLight()
                 showingExplorer = true
             }) {
                 Circle()
@@ -87,6 +89,11 @@ struct HomeView: View {
                     .background(Color.theme.surfaceDark)
                     .cornerRadius(12)
                     .frame(height: 160)
+                    .onChange(of: dreamEntryText) { oldValue, newValue in
+                        if oldValue.isEmpty && !newValue.isEmpty {
+                            HapticsManager.shared.playLight()
+                        }
+                    }
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.white.opacity(0.1), lineWidth: 1)
@@ -105,6 +112,7 @@ struct HomeView: View {
             }
 
             Button(action: {
+                HapticsManager.shared.playMedium()
                 // Action to analyze
             }) {
                 HStack {
@@ -225,7 +233,7 @@ struct HomeView: View {
                 Spacer()
 
                 Button("View All") {
-                    // Action
+                    HapticsManager.shared.playLight()
                 }
                 .font(.subheadline)
                 .foregroundColor(Color.theme.primary)

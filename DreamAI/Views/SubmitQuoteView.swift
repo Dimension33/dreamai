@@ -42,6 +42,11 @@ struct SubmitQuoteView: View {
                                 )
                                 .foregroundColor(.white)
                                 .padding(1) // Avoid cut off
+                                .onChange(of: quoteText) { oldValue, newValue in
+                                    if oldValue.isEmpty && !newValue.isEmpty {
+                                        HapticsManager.shared.playLight()
+                                    }
+                                }
                         }
 
                         VStack(alignment: .leading, spacing: 8) {
@@ -55,6 +60,11 @@ struct SubmitQuoteView: View {
                                     .foregroundColor(.gray)
                                 TextField("e.g. Marcus Aurelius", text: $authorText)
                                     .foregroundColor(.white)
+                                    .onChange(of: authorText) { oldValue, newValue in
+                                        if oldValue.isEmpty && !newValue.isEmpty {
+                                            HapticsManager.shared.playLight()
+                                        }
+                                    }
                             }
                             .padding()
                             .background(Color.theme.surfaceDark)
@@ -92,6 +102,7 @@ struct SubmitQuoteView: View {
 
                     // Submit Button
                     Button(action: {
+                        HapticsManager.shared.playSuccess()
                         dismiss()
                     }) {
                         HStack {
@@ -116,6 +127,7 @@ struct SubmitQuoteView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        HapticsManager.shared.playLight()
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")

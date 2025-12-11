@@ -47,5 +47,8 @@ struct ContentView: View {
         }
         .accentColor(Color.theme.primary)
         .preferredColorScheme(.dark) // Default to dark as per the design focus
+        .onChange(of: selection) { _, _ in
+            HapticsManager.shared.playSelection()
+        }
     }
 }

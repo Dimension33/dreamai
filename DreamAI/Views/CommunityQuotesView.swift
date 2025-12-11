@@ -14,16 +14,22 @@ struct CommunityQuotesView: View {
                     Spacer()
                     // Filters
                     HStack(spacing: 24) {
-                        Button("Trending") {}
+                        Button("Trending") {
+                            HapticsManager.shared.playSelection()
+                        }
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.theme.primary)
                             .overlay(Rectangle().frame(height: 2).foregroundColor(Color.theme.primary).offset(y: 12), alignment: .bottom)
-                        Button("Newest") {}
+                        Button("Newest") {
+                            HapticsManager.shared.playSelection()
+                        }
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.gray)
-                        Button("Top Rated") {}
+                        Button("Top Rated") {
+                            HapticsManager.shared.playSelection()
+                        }
                             .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(.gray)
@@ -85,7 +91,10 @@ struct CommunityQuotesView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button(action: { showingSubmitSheet = true }) {
+                    Button(action: {
+                        HapticsManager.shared.playMedium()
+                        showingSubmitSheet = true
+                    }) {
                         Image(systemName: "plus")
                             .font(.system(size: 28))
                             .foregroundColor(.white)
@@ -159,7 +168,9 @@ struct CommunityQuotesView: View {
 
                         Spacer()
 
-                        Button("Vote") {}
+                        Button("Vote") {
+                            HapticsManager.shared.playLight()
+                        }
                             .font(.caption)
                             .fontWeight(.bold)
                             .padding(.horizontal, 12)
@@ -168,7 +179,10 @@ struct CommunityQuotesView: View {
                             .foregroundColor(.white)
                             .cornerRadius(8)
 
-                         Button(action: { showingShareSheet = true }) {
+                         Button(action: {
+                            HapticsManager.shared.playLight()
+                            showingShareSheet = true
+                        }) {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(.white.opacity(0.8))
                         }
@@ -189,7 +203,10 @@ struct CommunityQuotesView: View {
 
                         Spacer()
 
-                        Button(action: { showingShareSheet = true }) {
+                        Button(action: {
+                            HapticsManager.shared.playLight()
+                            showingShareSheet = true
+                        }) {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(.white.opacity(0.8))
                         }
@@ -262,7 +279,10 @@ struct CommunityQuotesView: View {
 
                 HStack(spacing: 12) {
                     Image(systemName: "bookmark")
-                    Button(action: { showingShareSheet = true }) {
+                    Button(action: {
+                        HapticsManager.shared.playLight()
+                        showingShareSheet = true
+                    }) {
                         Image(systemName: "square.and.arrow.up")
                             .foregroundColor(.gray)
                     }

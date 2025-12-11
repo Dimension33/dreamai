@@ -166,7 +166,9 @@ struct ProfileView: View {
                             }
 
                             // Logout
-                            Button(action: {}) {
+                            Button(action: {
+                                HapticsManager.shared.playHeavy()
+                            }) {
                                 HStack {
                                     Image(systemName: "rectangle.portrait.and.arrow.right")
                                     Text("Log Out")
@@ -224,7 +226,9 @@ struct ProfileView: View {
     }
 
     func settingsRow(icon: String, title: String, subtitle: String?, hasArrow: Bool) -> some View {
-        Button(action: {}) {
+        Button(action: {
+            HapticsManager.shared.playLight()
+        }) {
             HStack(spacing: 16) {
                 iconBox(name: icon)
 
@@ -273,6 +277,9 @@ struct ProfileView: View {
             Toggle("", isOn: isOn)
                 .labelsHidden()
                 .tint(Color.theme.primary)
+                .onChange(of: isOn.wrappedValue) { _, _ in
+                    HapticsManager.shared.playLight()
+                }
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 16)

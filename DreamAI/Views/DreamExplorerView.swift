@@ -17,6 +17,11 @@ struct DreamExplorerView: View {
                             .foregroundColor(Color.theme.textSecondary)
                         TextField("What did you dream about?", text: $searchText)
                             .foregroundColor(.white)
+                            .onChange(of: searchText) { oldValue, newValue in
+                                if oldValue.isEmpty && !newValue.isEmpty {
+                                    HapticsManager.shared.playLight()
+                                }
+                            }
                     }
                     .padding()
                     .background(Color.theme.cardDark) // Using a darker bg instead of white for dark mode consistency
@@ -51,7 +56,9 @@ struct DreamExplorerView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                         Spacer()
-                        Button("View All") {}
+                        Button("View All") {
+                            HapticsManager.shared.playLight()
+                        }
                             .font(.subheadline)
                             .foregroundColor(Color.theme.primary)
                     }
@@ -122,7 +129,9 @@ struct DreamExplorerView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        HapticsManager.shared.playMedium()
+                    }) {
                         HStack {
                             Image(systemName: "wand.and.stars")
                             Text("Interpret My Dream")
@@ -144,6 +153,7 @@ struct DreamExplorerView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
+                    HapticsManager.shared.playLight()
                     dismiss()
                 }) {
                     Image(systemName: "arrow.left")

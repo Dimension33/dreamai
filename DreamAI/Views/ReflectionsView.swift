@@ -19,6 +19,11 @@ struct ReflectionsView: View {
                                         .foregroundColor(.gray)
                                     TextField("Search topics, feelings...", text: $searchText)
                                         .foregroundColor(.white)
+                                        .onChange(of: searchText) { oldValue, newValue in
+                                            if oldValue.isEmpty && !newValue.isEmpty {
+                                                HapticsManager.shared.playLight()
+                                            }
+                                        }
                                 }
                                 .padding(12)
                                 .background(Color.theme.cardDark)
@@ -28,7 +33,9 @@ struct ReflectionsView: View {
                                         .stroke(Color.white.opacity(0.1), lineWidth: 1)
                                 )
 
-                                Button(action: {}) {
+                                Button(action: {
+                                    HapticsManager.shared.playLight()
+                                }) {
                                     Image(systemName: "slider.horizontal.3")
                                         .foregroundColor(.white)
                                         .padding(12)
@@ -176,7 +183,9 @@ struct ReflectionsView: View {
 
                 Spacer()
 
-                Button("Start") {}
+                Button("Start") {
+                    HapticsManager.shared.playMedium()
+                }
                     .font(.caption)
                     .fontWeight(.bold)
                     .padding(.horizontal, 16)
